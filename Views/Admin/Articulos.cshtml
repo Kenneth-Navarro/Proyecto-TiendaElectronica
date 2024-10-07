@@ -1,0 +1,52 @@
+﻿@model List<Articulo>;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2 class="mb-3">Artículos</h2>
+
+<div class="admin-element">
+    <a href="@Url.Action("CrearArticulo")" class="btn btn-nuevo mb-4">
+        <i class="fas fa-plus"></i> Agregar Artículo
+    </a>
+    <table id="table_id" class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Categoría</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var articulo in Model)
+            {
+                <tr>
+                    <td class="text-center">@articulo.ArticuloId</td>
+                    <td>@articulo.Nombre</td>
+                    <td>@articulo.Marca</td>
+                    <td>@articulo.Categoria.Nombre</td>
+                    <td>
+                        <a href="@Url.Action("VerArticulo", new { id = articulo.ArticuloId })" class="btn btn-ver">
+                            <i class="fas fa-eye"></i> Ver
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditarArticulo", new { id = articulo.ArticuloId })" class="btn btn-actualizar">
+                            <i class="fas fa-edit"></i> Actualizar
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-eliminar" onclick="eliminar(@articulo.ArticuloId, '/Admin/EliminarArticulo')">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

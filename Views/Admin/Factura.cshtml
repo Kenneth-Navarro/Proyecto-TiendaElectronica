@@ -1,0 +1,48 @@
+﻿@model List<Factura>;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+@Html.Raw(TempData["SweetAlertScript"])
+
+<h2 class="mb-3">Facturas</h2>
+
+<div class="admin-element">
+
+    <table id="table_id" class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Factura Id</th>
+                <th class="text-center">Fecha de Creación</th>
+                <th>Subtotal</th>
+                <th>Monto Total</th>
+                <th>Cédula Usuario</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var factura in Model)
+            {
+                <tr>
+                    <td class="text-center">@factura.FacturaId</td>
+                    <td class="text-center">@factura.FechaCreacion.ToString("dd/MM/yyyy")</td>
+                    <td>@factura.SubTotal</td>
+                    <td>@factura.MontoTotal</td>
+                    <td>@factura.UsuarioId</td>
+                    <td>
+                        <a href="@Url.Action("VerFactura", new{facturaId = factura.FacturaId})" class="btn btn-ver">
+                            <i class="fas fa-eye"></i>Ver
+                        </a>
+                    </td>
+                  
+
+                </tr>
+
+            }
+
+        
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,184 @@
+﻿@model List<Articulo>
+
+
+<section class="section banner banner-section ">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-md-6">
+				<img class="banner-image img-fluid" src="img/AudifonoHeader.png" alt="banner">
+			</div>
+			<div class="col-md-6">
+				<div class="banner-inner">
+					<h1 class="display-4">Bienvenido a Navatech</h1>
+					<p class="lead">
+						Enjoy award-winning stereo beats with wireless listening freedom and sleek,
+						streamlined with premium padded and delivering first-rate playback.
+					</p>
+					<a href="@Url.Action("Tienda")" class="btn btn-outline-light btnVer border-1 rounded-0">Ver Productos</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="my-5">
+	<h2 class="text-center mb-4">Marcas destacadas</h2>
+	<div class="logos my-5">
+		<div class="logos-slide">
+			<img src="/img/logitech-2-1.svg" />
+			<img src="/img/razer-1.svg" />
+			<img src="/img/asrock.svg" />
+			<img src="/img/micro-star-international-logo.svg" />
+			<img src="/img/corsair.svg" />
+			<img src="/img/redragon.svg" />
+			<img src="/img/asus-rog-1-1.svg" />
+		</div>
+	</div>
+
+	<script>
+		var copy = document.querySelector(".logos-slide").cloneNode(true);
+		document.querySelector(".logos").appendChild(copy);
+	</script>
+</div>
+
+
+
+<div class="my-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 col-md-6">
+				<div class="card border-0 bg-dark text-white">
+					<img src="img/banner1.jpg" class="card-img card-img-transparent" alt="Banner Image" height="320px">
+					<div class="card-img-overlay d-flex flex-column justify-content-center">
+						<h5 class="card-title text-center">Nuevo Producto</h5>
+						<h3 class="card-text text-center">Novedades</h3>
+						<div class="mt-4 text-center">
+							<a href="@Url.Action("Tienda")" class="btn btn-outline-light btnVer border-1 rounded-0">Ver Productos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-6 col-md-6">
+				<div class="card border-0 bg-dark text-white">
+					<img src="img/banner2.jpg" class="card-img card-img-transparent" alt="Banner Image" height="320px">
+					<div class="card-img-overlay d-flex flex-column justify-content-center">
+						<h5 class="card-title text-center">Nuevo Producto</h5>
+						<h3 class="card-text text-center">Novedades</h3>
+						<div class="mt-4 text-center">
+							<a href="@Url.Action("Tienda")" class="btn btn-outline-light btnVer border-1 rounded-0">Ver Productos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			<style>
+
+				.card-img-transparent {
+					opacity: 0.5;
+				}
+
+				.card-img-overlay {
+					transition: 0.3s;
+				}
+
+					.card-img-overlay:hover {
+						background-color: rgba(0, 0, 0, 0.5);
+					}
+
+						.card-img-overlay:hover .card-img {
+							opacity: 0.8;
+						}
+
+				.my-custom-button {
+					background-color: cornflowerblue !important;
+					color: white !important;
+				}
+			</style>
+
+		</div>
+	</div>
+</div>
+
+
+
+<div class="my-5">
+	<div class="container">
+		<div class="text-center">
+			<h4 class="text-white mb-4">Productos</h4>
+		</div>
+
+		<div class="mb-5" style="padding:1px; background-color: white;"></div>
+
+		@{
+			// Agrupa los productos por categoría
+			var categoriasAgrupadas = Model
+			.GroupBy(articulo => articulo.Categoria)
+			.OrderBy(grupo => grupo.Key.Nombre);
+		}
+
+		@foreach (var categoriaGrupo in categoriasAgrupadas)
+		{
+			<div class="mb-5" >
+				<div class="mb-4">
+					<h5 class="text-white">@categoriaGrupo.Key.Nombre</h5>
+					<div class="mb-2" style="background-color: #E14848; padding: 1px; width: 30px;"></div>
+					<span class="mt-2">@categoriaGrupo.Key.Descripcion</span>
+				</div>
+
+
+
+				<div class="row mb-5 mt-3">
+					@foreach (var articulo in categoriaGrupo)
+					{
+						<div class="col-md-3 col-sm-6">
+							<div class="product-grid">
+								<div class="product-image">
+									<a href="@Url.Action("Producto", new { id = articulo.ArticuloId })" class="image">
+										<img class="img-thumbnail pic-1 img-fluid w-100" src="data:image;base64,@Convert.ToBase64String(articulo.Imagen.Imagen1)" alt="@articulo.Nombre" style="height: 200px; width: 200px;">
+										<img class="img-thumbnail pic-2 img-fluid w-100" src="data:image;base64,@Convert.ToBase64String(articulo.Imagen.Imagen2)" alt="@articulo.Nombre" style="height: 200px; width: 200px;">
+									</a>
+									<ul class="product-links">
+										<li><a href="@Url.Action("Producto", new { id = articulo.ArticuloId })"><i class="fa fa-eye"></i></a></li>
+										@if (User.IsInRole("Usuario"))
+										{
+											<li><a onclick="agregarProductoAlCarrito('@articulo.ArticuloId', '@articulo.Nombre', '@articulo.Precio', '@Convert.ToBase64String(articulo.Imagen.Imagen1)', @articulo.Cantidad)"><i class="fa fa-shopping-cart"></i></a></li>
+										}
+									</ul>
+								</div>
+								<div class="product-content">
+									<h3 class="title"><a href="#">@articulo.Nombre</a></h3>
+									<div class="precio">₡@articulo.Precio</div>
+								</div>
+							</div>
+						</div>
+
+					}
+
+					<div class="col-md-3 col-sm-6 d-flex  align-items-center">
+						<a href="@Url.Action("Tienda", new{categoria = categoriaGrupo.Key.Nombre})" class="cssbuttons-io-button">
+								Ver más
+								<div class="icono">
+									<svg height="24"
+										 width="24"
+										 viewBox="0 0 24 24"
+										 xmlns="http://www.w3.org/2000/svg">
+										<path d="M0 0h24v24H0z" fill="none"></path>
+										<path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+											  fill="currentColor"></path>
+									</svg>
+								</div>
+							</a>
+						
+					</div>
+				</div>
+			</div>
+		}
+		
+
+	</div>
+</div>
+<script src="~/js/Producto.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

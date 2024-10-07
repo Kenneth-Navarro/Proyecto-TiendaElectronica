@@ -1,0 +1,63 @@
+# Archivos de compilación y binarios
+bin/
+obj/
+
+
+# Configuración de VS Code
+.vscode/
+
+# Configuración de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de usuario
+*.rsuser
+*.rslog
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de IIS Express
+/IISExpress/
+
+# Archivos generados por Visual Studio
+Generated_Code/
+
+# Archivos de logs
+*.log
+/logs
+
+# Archivos temporales
+*.tmp
+*.temp
+*.pid
+*.svclog
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos específicos del sistema operativo
+*.swp
+*.swo
+
+# Archivos de publicación de sitios web
+publish/
+publishProfile/
+
+# Archivos de configuración del entorno
+.env
+
+# Archivos de coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Archivos de configuración de Rider (JetBrains)
+.idea/
+.idea/*
+.idea_modules/

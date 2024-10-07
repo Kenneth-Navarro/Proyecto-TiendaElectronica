@@ -1,0 +1,120 @@
+﻿@model Proyecto_TiendaElectronica.Models.Articulo
+
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            @if (Model.Imagen != null)
+            {
+                <img id="mainImage" src="data:image;base64,@Convert.ToBase64String(Model.Imagen.Imagen1)" alt="Main Image" class="imegen-principal" style="width: 100%; height: auto;">
+                <div class="mt-2 d-flex justify-content-around">
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.Imagen.Imagen1)" alt="1" class="imagen-pequena" style="width: 20%;" onclick="changeMainImage('@Convert.ToBase64String(Model.Imagen.Imagen1)')">
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.Imagen.Imagen2)" alt="2" class="imagen-pequena" style="width: 20%;" onclick="changeMainImage('@Convert.ToBase64String(Model.Imagen.Imagen2)')">
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.Imagen.Imagen3)" alt="3" class="imagen-pequena" style="width: 20%;" onclick="changeMainImage('@Convert.ToBase64String(Model.Imagen.Imagen3)')">
+                </div>
+            }
+            else
+            {
+                <p>Imagen no disponible</p>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Nombre</h2>
+            <h4 class="precio" style="font-size:20px">₡ @Model.Precio</h4>
+            <p></p>
+
+             @if (User.Identity.IsAuthenticated)
+                                {
+            <div class="d-flex">
+                <input id="cantidad" type="number" class="form-control me-2 text-center" value="1" min="1" style="width: 60px;">
+                @if (User.IsInRole("Usuario"))
+                {
+                    <button class="btn btn-danger" onclick="agregarAlCarrito('@Model.ArticuloId', '@Model.Nombre', '@Model.Precio', '@(Model.Imagen != null ? Convert.ToBase64String(Model.Imagen.Imagen1) : "")', '@Model.Cantidad')">Añadir al carrito</button>
+                }
+            </div>
+                                }
+            <div class="mt-3 d-flex">
+                <strong class="me-2">Categoria:</strong>
+                <p class="precio">@Model.Categoria.Nombre</p>
+            </div>
+            <div class="d-flex">
+                <strong class="me-2">Stock:</strong>
+                <p id="stock"class="precio">@Model.Cantidad</p>
+            </div>
+            <div class="d-flex">
+                <strong class="me-2">Codigo:</strong>
+                <p class="precio">@Model.ArticuloId</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-5"></div>
+<div class="my-5">
+    <div class="container">
+        <h4 class="text-white">Productos Relacionados</h4>
+            <div class="row">
+            @{
+                var articulosSimilares = ViewBag.Articulos as List<Articulo>;
+            }
+            @if (articulosSimilares == null || articulosSimilares.Count == 0)
+                {
+                    <p>No hay más productos relacionados que mostrar</p>
+                }
+                else{
+                    @foreach (var articulo in ViewBag.Articulos)
+                    {
+                        <div class="col-md-3 col-sm-6 mb-5">
+                            <div class="product-grid">
+                                <div class="product-image">
+                                    <a href="@Url.Action("Producto",new{id = @articulo.ArticuloId})" class="image">
+                                        <img class="img-thumbnail pic-1" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen1)" alt="@articulo.Nombre" class="img-fluid w-100">
+                                        <img class="img-thumbnail pic-2" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen2)" alt="@articulo.Nombre" class="img-fluid w-100">
+                                    </a>
+                                    <ul class="product-links">
+                                        <li><a href="@Url.Action("Producto",new{id = @articulo.ArticuloId})"><i class="fa fa-eye"></i></a></li>
+                                    @if (User.Identity.IsAuthenticated){
+                                        <li><a onclick="agregarProductoAlCarrito('@articulo.ArticuloId', '@articulo.Nombre', '@articulo.Precio', '@Convert.ToBase64String(articulo.Imagen.Imagen1)',@articulo.Cantidad)"><i class="fa fa-shopping-cart"></i></a></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="title"><a href="#">@articulo.Nombre</a></h3>
+                                    <div class="precio"> ₡@articulo.Precio</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                
+                }
+                
+
+                
+            </div>
+    </div>
+</div>
+
+<script src="~/js/Producto.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    .imegen-principal {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .imagen-pequena {
+        width: 20%;
+        height: auto;
+    }
+
+    <</style>
+    <style >
+    .my-custom-button {
+        background-color: cornflowerblue !important;
+        color: white !important;
+    }
+
+  
+</style>

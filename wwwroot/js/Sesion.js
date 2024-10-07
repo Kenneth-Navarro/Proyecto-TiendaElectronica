@@ -1,0 +1,3 @@
+﻿const cerrarSesion = () => {
+    localStorage.clear();
+};

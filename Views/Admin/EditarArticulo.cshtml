@@ -1,0 +1,124 @@
+﻿@model Proyecto_TiendaElectronica.Models.Articulo;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+<div class="d-flex justify-content-between mb-3">
+    <h1 class="title">Editar Artículo</h1>
+
+    <a href="@Url.Action("ModificaImagen", new { codigoImagen = Model.codigoImagen, ArticuloID = Model.ArticuloId })" class="btn boton-secundario">
+        <span class="shadow-volver"></span>
+        <span class="edge-volver"></span>
+        <span class="front-volver text">
+            Modificar Imágenes
+        </span>
+    </a>
+</div>
+
+<div class="admin-element">
+    
+    <form asp-action="EditarArticulo" method="post" enctype="multipart/form-data" >
+        <input asp-for="ArticuloId" type="hidden" />
+        <input asp-for="codigoImagen" type="hidden" />
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Nombre">Nombre</label>
+                    <i class="fa-solid fa-laptop icon"></i>
+                    <input placeholder="Computadora" asp-for="Nombre" class="input_field" type="text">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Nombre"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Precio">Precio</label>
+                    <i class="fa-solid fa-money-bill icon"></i>
+                    <input placeholder="50000" asp-for="Precio" class="input_field" type="number">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Precio"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Cantidad">Cantidad</label>
+                    <i class="fa-solid fa-arrow-up-wide-short icon"></i>
+                    <input placeholder="25" asp-for="Cantidad" class="input_field" type="number">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Cantidad"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Marca">Marca</label>
+                    <i class="fa-solid fa-building icon"></i>
+                    <input placeholder="Lenovo" asp-for="Marca" class="input_field" type="text">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Marca"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Descripcion">Descripción</label>
+                    <i class="fa-solid fa-pen icon"></i>
+                    <input placeholder="Computadora con procesador Intel Core i7, 16GB RAM, 512GB SSD" asp-for="Descripcion" class="input_field" type="text">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Descripcion"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="idCategoria">Categoría</label>
+                    <i class="fa-solid fa-list icon"></i>
+                    <select asp-for="idCategoria" class="input_field">
+                        <option value="">Seleccione la categoría</option>
+                        @foreach (var categoria in ViewBag.Categorias)
+                        {
+                            if (categoria.Value == Model.idCategoria.ToString())
+                            {
+                                <option value="@categoria.Value" selected>@categoria.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@categoria.Value">@categoria.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="idCategoria"></span>
+                </div>
+            </div>
+        </div>
+
+        <a href="@Url.Action("Articulos")" class="btn boton-secundario mt-3">
+            <span class="shadow-volver"></span>
+            <span class="edge-volver"></span>
+            <span class="front-volver text">
+                Volver
+            </span>
+        </a>
+        <button type="submit" class="btn boton mt-3">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">
+                Actualizar
+            </span>
+        </button>
+
+    </form>
+    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

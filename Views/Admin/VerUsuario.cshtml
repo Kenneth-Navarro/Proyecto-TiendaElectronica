@@ -1,0 +1,66 @@
+﻿@model Proyecto_TiendaElectronica.ViewModels.UserViewModel;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2 class="mb-3">Información del Usuario</h2>
+
+<div class="admin-element">
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="UsuarioId">Cédula</label>
+                    <i class="fa-solid fa-id-card icon"></i>
+                    <input  type="text" class="input_field" asp-for="UsuarioId" readonly>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Nombre">Nombre de Usuario</label>
+                    <i class="fa-solid fa-user icon"></i>
+                <input type="text" class="input_field" asp-for="Nombre" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Correo"></label>
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <input type="text" class="input_field" asp-for="Correo" readonly>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Telefono">Teléfono</label>
+                    <i class="fa-solid fa-phone icon"></i>
+                <input type="text" class="input_field" asp-for="Telefono" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Rol"></label>
+                    <i class="fa-solid fa-users icon"></i>
+                    <input type="text" class="input_field" asp-for="Rol" readonly>
+                </div>
+        </div>
+        
+        <div class="mb-3">
+            <div class="input_container">
+                <label class="input_label" asp-for="Estado"></label>
+                <i class="fa-solid fa-user-gear icon"></i>
+                <input type="text" class="input_field" value="@(Model.Estado ? "Activo" : "Inactivo")"   readonly>
+            </div>
+        </div>
+
+    <a href="@Url.Action("Usuarios")" class="btn boton-secundario">
+        <span class="shadow-volver"></span>
+        <span class="edge-volver"></span>
+        <span class="front-volver text">
+            Volver
+        </span>
+    </a>
+
+</div>

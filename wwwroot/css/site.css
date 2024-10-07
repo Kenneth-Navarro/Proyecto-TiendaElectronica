@@ -1,0 +1,433 @@
+:root {
+    --blancoHueso: #F2F2F2;
+    --grisMedio: #3E3E3E;
+    --grisOscuro: #262626;
+    --negro: #0D0D0D;
+    --rojo: #E14848;
+}
+
+body {
+    background-color: var(--negro);
+    color: var(--blancoHueso);
+}
+
+
+a {
+    color: var(--blancoHueso) !important;
+    text-decoration: none;
+}
+
+
+
+.logo {
+    color: var(--blancoHueso)
+}
+
+    .logo:hover {
+        color: var(--rojo)
+    }
+
+.header {
+    background-color: var(--negro);
+}
+
+.migajas {
+    background-color: var(--grisOscuro);
+}
+
+    .migajas span {
+        color: var(--rojo);
+    }
+
+.nav-link {
+    color: var(--blancoHueso);
+}
+
+    .nav-link:hover {
+        color: var(--rojo);
+    }
+
+    .nav-link:focus {
+        color: var(--rojo);
+        box-shadow: none;
+        box-shadow: 0 0 20px var(--rojo);
+    }
+
+
+
+.navbar-toggler {
+    color: var(--blancoHueso);
+}
+
+    .navbar-toggler:focus {
+        text-decoration: none;
+        outline: 0;
+        box-shadow: 0 0 0 .12rem;
+    }
+
+.btnVer {
+    height: 44px;
+    width: 170px;
+    align-content: center;
+}
+
+    .btnVer:hover {
+        color: var(--negro) !important;
+    }
+
+
+.btnAnadir {
+    background-color: var(--negro);
+}
+
+.card {
+    background-color: var(--grisOscuro);
+    color: var(--blancoHueso);
+}
+
+.precio {
+    color: var(--rojo);
+}
+
+
+.dropDown {
+    background-color: var(--rojo);
+}
+
+.dropDown-Item {
+    color: var(--negro) !important;
+}
+
+    .dropDown-Item:hover {
+        background-color: var(--grisMedio) !important;
+        color: var(--blancoHueso) !important;
+    }
+
+
+.categorias {
+    border: 1px solid;
+}
+
+.dropdown {
+    position: relative;
+    text-align: center; /* Centra el contenido dentro del <li> */
+    margin: 0 10px; /* Añade margen entre los elementos */
+}
+
+    .dropdown .btn {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .dropdown:hover .btn {
+        box-shadow: 0 0 20px var(--rojo);
+        color: var(--rojo);
+    }
+
+    .dropdown .btn:focus {
+        box-shadow: 0 0 20px var(--rojo);
+        color: var(--rojo);
+    }
+
+
+
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--negro);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: left;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+}
+
+.sub_categoria {
+    color: var(--grisOscuro) !important;
+    color: var(--blancoHueso) !important;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+    .dropdown-menu li:hover {
+        background-color: var(--rojo);
+        border-radius: 10px;
+    }
+
+        .dropdown-menu li:hover a {
+            color: var(--negro) !important;
+        }
+/* Mostrar el menú desplegable al pasar el mouse */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+
+
+/*--SLIDER INDEX---*/
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.logos {
+    overflow: hidden;
+    padding: 60px 0;
+    background: var(--grisOscuro);
+    white-space: nowrap;
+    position: relative;
+}
+
+    .logos:before,
+    .logos:after {
+        position: absolute;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+    }
+
+    .logos:before {
+        left: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--grisOscuro));
+    }
+
+    .logos:after {
+        right: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--grisOscuro));
+    }
+
+    .logos:hover .logos-slide {
+        animation-play-state: paused;
+    }
+
+.logos-slide {
+    display: inline-block;
+    animation: 35s slide infinite linear;
+}
+
+    .logos-slide img {
+        height: 50px;
+        margin: 0 40px;
+    }
+
+
+
+.product-grid {
+    background-color: var(--grisOscuro);
+    text-align: center;
+}
+
+    .product-grid .product-image {
+        position: relative;
+    }
+
+        .product-grid .product-image a.image {
+            display: block;
+        }
+
+        .product-grid .product-image img {
+            width: 100%;
+            height: auto;
+        }
+
+    .product-grid:hover .product-image .pic-1 {
+        opacity: 0;
+        transition: all 0.5s ease 0s;
+    }
+
+.product-image .pic-2 {
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease 0s;
+}
+
+.product-grid:hover .product-image .pic-2 {
+    filter: blur(0);
+    opacity: 1;
+}
+
+.product-grid .product-like-icon {
+    color: #999;
+    font-size: 16px;
+    position: absolute;
+    right: 13px;
+    top: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+    .product-grid .product-like-icon:hover {
+        text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    }
+
+.product-grid .product-links {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.product-grid:hover .product-links {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.product-grid .product-links li {
+    display: inline-block;
+}
+
+    .product-grid .product-links li a {
+        color: #fff;
+        background: #333;
+        font-size: 16px;
+        line-height: 38px;
+        width: 40px;
+        height: 40px;
+        display: block;
+        transition: all 0.3s ease 0s;
+    }
+
+        .product-grid .product-links li a:hover {
+            color: #fff;
+            background: var(--rojo);
+        }
+
+.product-grid .product-content {
+    background-color: var(--grisOscuro);
+    padding: 10px 10px 10px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+
+.product-grid:hover .product-content {
+    transform: translateY(47px);
+}
+
+.product-grid .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 0 0 7px;
+}
+
+    .product-grid .title a {
+        color: var(--negro);
+        transition: all 0.3s ease 0s;
+    }
+
+        .product-grid .title a:hover {
+            color: var(--negro);
+        }
+
+.product-grid .price {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media screen and (max-width:990px) {
+    .product-grid {
+        margin: 0 0 30px;
+    }
+}
+
+.error-form {
+    color: var(--rojo);
+}
+
+
+.cssbuttons-io-button {
+    background: var(--grisMedio);
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em var(--blancoHueso);
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    cursor: pointer;
+}
+
+    .cssbuttons-io-button .icono {
+        background: var(--blancoHueso);
+        margin-left: 1em;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.2em;
+        width: 2.2em;
+        border-radius: 0.7em;
+        box-shadow: 0.1em 0.1em 0.6em 0.2em var(--grisMedio);
+        right: 0.3em;
+        transition: all 0.3s;
+    }
+
+    .cssbuttons-io-button:hover .icono {
+        width: calc(100% - 0.6em);
+    }
+
+    .cssbuttons-io-button .icono svg {
+        width: 1.1em;
+        transition: transform 0.3s;
+        color: var(--rojo);
+    }
+
+    .cssbuttons-io-button:hover .icono svg {
+        transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icono {
+        transform: scale(0.95);
+    }
+
+
+.btn-ver {
+    background-color: var(--blancoHueso);
+    color: #787878 !important;
+    border: none;
+    font-weight: bold;
+}
+
+    .btn-ver:hover {
+        background-color: #787878;
+        color: var(--blancoHueso) !important;
+    }

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proyecto_TiendaElectronica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/loginStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/formStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Proyecto_TiendaElectronica.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body style="background-color: #010101">
+    <div class="row" style="--bs-gutter-x: 0rem;">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <img src="/img/logueo.jpg" alt="Alternate Text" style="width:100%; height:100vh" />
+        </div>
+        <div class="col-xl-8 col-md-8 col-sm-8 d-flex align-items-center">
+            <div class="container  justify-content-center" style="margin-left: 30%; margin-right: 30%;">
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="https://kit.fontawesome.com/2425b0cf01.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.1/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

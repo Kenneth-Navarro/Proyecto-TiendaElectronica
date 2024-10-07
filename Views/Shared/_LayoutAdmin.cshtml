@@ -1,0 +1,213 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proyecto_TiendaElectronica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/adminStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/formStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Proyecto_TiendaElectronica.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+
+    @if (ViewBag.Pagina == "CrearArticulo" || ViewBag.Pagina == "ModificaImagen")
+    {
+        <script src="~/js/imagePreview.js"></script>
+        
+    }
+
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Navatech Administración</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="
+                    @(ViewBag.Pagina == "Index" ? "active" : "" )
+                ">
+                    <a href="@Url.Action("Index")">
+                        <div class="d-flex">
+                            <div style="margin-right: 18px">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                            <div class="mx-2">
+                                Inicio
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="
+                    @(ViewBag.Pagina == "Usuarios" ? "active" : "" )
+                ">
+                    <a href="@Url.Action("Usuarios")">
+                        <div class="d-flex">
+                            <div style="margin-right: 18px">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="mx-2">
+                                Usuarios
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="
+                    @(ViewBag.Pagina == "Articulos" ? "active" : "" )
+                ">
+                    <a href="@Url.Action("Articulos")">
+                        <div class="d-flex">
+                            <div style="margin-right: 10px">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <div class="mx-2">
+                                Artículos
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li class="
+                    @(ViewBag.Pagina == "Facturas" ? "active" : "" )
+                ">
+                    <a href="@Url.Action("Factura")">
+                        <div class="d-flex">
+                            <div style="margin-right: 18px">
+                                <i class="fa-solid fa-file-invoice"></i>
+                            </div>
+                            <div class="mx-2">
+                                Facturas
+                            </div>
+
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <i class="fa-solid fa-user-lock" style="margin-right: 10px"></i>
+                                Sesión
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="@Url.Action("Perfil", "Home")">
+                                    <div class="d-flex">
+                                        <div style="margin-right: 5px">
+                                            <i class="fa-solid fa-user"></i>
+                                        </div>
+                                        <div class="mx-2">
+                                            Mi Perfil
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">
+                                    <div class="d-flex">
+                                        <div style="margin-right: 5px">
+                                            <i class="fa-solid fa-arrow-left-long"></i>
+                                        </div>
+                                        <div class="mx-2">
+                                            Vista Cliente
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Logout", "Logueo")">
+                                    <div class="d-flex">
+                                        <div style="margin-right: 5px">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </div>
+                                        <div class="mx-2">
+                                            Cerrar Sesión
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </li>
+            </ul>
+
+            
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn bars">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                        <h1>Navatech</h1>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="">
+                <main role="main" class="">
+                    @RenderBody()
+                </main>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    
+
+    
+
+   
+
+    
+
+    <script src="https://kit.fontawesome.com/2425b0cf01.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @if (ViewBag.Pagina == "Usuarios" || ViewBag.Pagina == "Articulos" || ViewBag.Pagina == "Facturas")
+    {
+        
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    }
+
+    @if (ViewBag.Pagina == "Index")
+    {
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="~/js/Graficos.js" asp-append-version="true"></script>
+    }
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+
+</body>
+
+

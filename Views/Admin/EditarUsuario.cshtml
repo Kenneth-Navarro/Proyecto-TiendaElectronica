@@ -1,0 +1,123 @@
+﻿@model Proyecto_TiendaElectronica.ViewModels.UserViewModel;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="d-flex justify-content-between mb-3"> 
+     <h2 class="">Editar Usuario</h2>
+    
+    @if (Model.Rol == "Administrador")
+    {
+        <div class="justify-content-end">
+            <a href="@Url.Action("EditarContrasena", new{ id = Model.UsuarioId })" class="btn boton-secundario">
+                <span class="shadow-volver"></span>
+                <span class="edge-volver"></span>
+                <span class="front-volver text">
+                    Actualizar Contraseña
+                </span>
+            </a>
+        </div>
+    }
+</div>
+
+<div class="admin-element">
+    <form asp-action="EditarUsuario" method="post">
+
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="UsuarioId">Cédula</label>
+                    <i class="fa-solid fa-id-card icon"></i>
+                    <input placeholder="123456789" type="number" class="input_field" asp-for="UsuarioId" readonly>
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="UsuarioId"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Nombre">Nombre de Usuario</label>
+                    <i class="fa-solid fa-user icon"></i>
+                    <input placeholder="Usuario" type="text" class="input_field" asp-for="Nombre" autocomplete="off">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Nombre"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Correo"></label>
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <input placeholder="123456789" type="text" class="input_field" asp-for="Correo">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Correo"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Telefono">Teléfono</label>
+                    <i class="fa-solid fa-phone icon"></i>
+                    <input placeholder="Usuario" type="text" class="input_field" asp-for="Telefono">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Telefono"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <div class="input_container">
+                <label class="input_label" asp-for="Rol"></label>
+                <i class="fa-solid fa-users icon"></i>
+                <select asp-for="Rol" class="input_field">
+                    <option class="select_item" value="Administrador">Administrador</option>
+                    <option class="select_item" value="Usuario">Usuario</option>
+                </select>
+            </div>
+            <div class="text-center text-break">
+                <span class="error-form" asp-validation-for="Rol"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="input_container">
+                <label class="input_label" asp-for="Estado"></label>
+                <i class="fa-solid fa-user-gear icon"></i>
+                <select asp-for="Estado" class="input_field">
+                    <option class="select_item" value="true">Activo</option>
+                    <option class="select_item" value="false">Inactivo</option>
+                </select>
+            </div>
+            <div class="text-center text-break">
+                <span class="error-form" asp-validation-for="Estado"></span>
+            </div>
+        </div>
+
+        <a href="@Url.Action("Usuarios")" class="btn boton-secundario mt-3">
+            <span class="shadow-volver"></span>
+            <span class="edge-volver"></span>
+            <span class="front-volver text">
+                Volver
+            </span>
+        </a>
+        <button type="submit" class="btn boton mt-3">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">
+                Actualizar
+            </span>
+        </button>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

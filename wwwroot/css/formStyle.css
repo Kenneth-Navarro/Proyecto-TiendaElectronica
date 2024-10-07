@@ -1,0 +1,397 @@
+﻿:root {
+    --blancoHueso: #F2F2F2;
+    --grisMedio: #3E3E3E;
+    --grisOscuro: #262626;
+    --negro: #0D0D0D;
+    --rojo: #E14848;
+    --negroOscuro: #010101;
+}
+
+body {
+    background-color: var(--negro);
+    color: var(--blancoHueso);
+}
+
+/*Formulario*/
+
+.input_container {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input_label {
+    font-size: 0.75rem;
+    color: #8B8E98;
+    font-weight: 600;
+}
+
+.icon {
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+    bottom: 9px;
+    color: var(--rojo);
+}
+
+.input_field {
+    width: 100%;
+    height: 40px;
+    padding: 0 0 0 40px;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    filter: drop-shadow(0px 1px 0px #efefef) drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+    .input_field:focus {
+        border: 1px solid transparent;
+        box-shadow: 0px 0px 0px 2px #242424;
+        background-color: var(--blancoHueso);
+    }
+
+
+.select_item {
+    background-color: var(--grisOscuro);
+    color: var(--blancoHueso);
+}
+
+    .select_item:focus {
+        background: var(--negro);
+    }
+
+
+
+
+/*Boton principal*/
+.boton {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient( to left, var(--grisOscuro) 0%, var(--grisOscuro) 8%, var(--grisOscuro) 92%, var(--grisOscuro) 100% );
+}
+
+.front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: var(--negro);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.boton:hover {
+    filter: brightness(110%);
+}
+
+    .boton:hover .front {
+        transform: translateY(-6px);
+        transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
+
+.boton:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.boton:hover .shadow {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.boton:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.boton:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+
+
+
+/*Boton secundario*/
+.boton-secundario {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.shadow-volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge-volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient( to left, var(--negro) 0%, var(--negro) 8%, var(--negro) 92%, var(--negro) 100% );
+}
+
+.front-volver {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: var(--grisOscuro);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.boton-secundario:hover {
+    filter: brightness(110%);
+}
+
+    .boton-secundario:hover .front-volver {
+        transform: translateY(-6px);
+        transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
+
+.boton-secundario:active .front-volver {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.boton-secundario:hover .shadow-volver {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.boton-secundario:active .shadow-volver {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.boton-secundario:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+
+
+/*Boton Logueo*/
+.boton-logueo {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.shadow-logueo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.edge-logueo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient( to left, var(--grisMedio) 0%, var(--grisMedio) 8%, var(--grisMedio) 92%, var(--grisMedio) 100% );
+}
+
+.front-logueo {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: black;
+    background: var(--blancoHueso);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.boton-logueo:hover {
+    filter: brightness(110%);
+}
+
+    .boton-logueo:hover .front-logueo {
+        transform: translateY(-6px);
+        transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
+
+.boton-logueo:active .front-logueo {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.boton-logueo:hover .shadow-logueo {
+    transform: translateY(4px);
+    transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.boton-logueo:active .shadow-logueo {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.boton-logueo:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.error-form {
+    width: 10px;
+    color: var(--rojo);
+}
+
+
+
+/*Flecha de volver*/
+
+.arrow {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    overflow: hidden;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+
+    .arrow:before,
+    .arrow:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        inset: 7px;
+    }
+
+    .arrow:before {
+        border: 4px solid #f0eeef;
+        transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms, transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+    }
+
+    .arrow:after {
+        border: 4px solid var(--grisMedio);
+        transform: scale(1.3);
+        transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+    }
+
+    .arrow:hover:before,
+    .arrow:focus:before {
+        opacity: 0;
+        transform: scale(0.7);
+        transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .arrow:hover:after,
+    .arrow:focus:after {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms, transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+    }
+
+.arrow-box {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+.arrow-elem {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 17px 18px 0 18px;
+    transform: rotate(180deg);
+    fill: #f0eeef;
+}
+
+.arrow:hover .arrow-box,
+.arrow:focus .arrow-box {
+    transition: 0.4s;
+    transform: translateX(-56px);
+}

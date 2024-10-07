@@ -1,0 +1,197 @@
+﻿@model List<Articulo>
+
+<div class="my-5 migajas">
+    <div class="container ">
+        <div class="my-5 align-items-center">
+            <div class="py-5">
+                <p>Inicio / <span>Tienda</span></p>
+
+                @if (ViewBag.Categoria == null)
+                {
+                    <h1>Todos los productos</h1>
+                }else{
+                    <h1>@ViewBag.Categoria</h1>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="my-5">
+        <div class="container d-flex justify-content-center categorias">
+            <ul class="d-flex m-0 justify-content-between list-unstyled">
+                <li class="dropdown">
+                    <a class="btn rounded-0">Computadoras</a>
+                    <ul class="dropdown-menu rounded-0">
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Gaming" })" class="sub_categoria">Gaming</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Oficina" })" class="sub_categoria">Oficina</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Laptop" })" class="sub_categoria">Laptops</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="btn rounded-0">Perifericos</a>
+                    <ul class="dropdown-menu rounded-0">
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Teclados" })" class="sub_categoria">Teclados</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Mouse" })" class="sub_categoria">Mouse</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Headset" })" class="sub_categoria">Headset</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Mousepad" })" class="sub_categoria">Mousepad</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Microfonos" })" class="sub_categoria">Microfonos</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Impresoras" })" class="sub_categoria">Impresoras</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Webcam" })" class="sub_categoria">Webcam</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="btn rounded-0">Accesorios</a>
+                    <ul class="dropdown-menu rounded-0">
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Adaptadores" })" class="sub_categoria">Adaptadores</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Extensiones" })" class="sub_categoria">Extensiones</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Cables" })" class="sub_categoria">Cables</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Sillas" })" class="sub_categoria">Sillas</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "LED" })" class="sub_categoria">LED</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="btn rounded-0">Componentes</a>
+                    <ul class="dropdown-menu rounded-0">
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Tarjeta Madre" })" class="sub_categoria">Tarjeta Madre</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Procesador" })" class="sub_categoria">Procesadores</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Memoria Ram" })" class="sub_categoria">Memoria Ram</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Tarjetas de Video" })" class="sub_categoria">Tarjetas de Video</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Almacenamiento" })" class="sub_categoria">Almacenamiento</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Enfriamiento Liquido" })" class="sub_categoria">Enfriamiento Liquido</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Enfriamiento de Aire" })" class="sub_categoria">Enfriamiento de Aire</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Fuentes de Poder" })" class="sub_categoria">Fuentes de Poder</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Cases" })" class="sub_categoria">Cases</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Ventiladores" })" class="sub_categoria">Ventiladores</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Monitores" })" class="sub_categoria">Monitores</a></li>
+                        <li><a href="@Url.Action("Tienda", "Home", new { categoria = "Reguladores UPS" })" class="sub_categoria">Reguladores UPS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="bsb-hero-5 px-3 bsb-overlay" style="background-image: url('/wwwroot/img/banner2.jpg');"></section>
+
+    <div class="my-5">
+        <div class="container">
+            <h4 class="text-white mb-4">Productos</h4>
+            <div class="row">
+
+            @if (ViewBag.Categoria == null)
+            {
+                
+			    // Agrupa los productos por categoría
+			    var categoriasAgrupadas = Model
+			    .GroupBy(articulo => articulo.Categoria)
+			    .OrderBy(grupo => grupo.Key.Nombre);
+		        
+
+		        @foreach (var categoriaGrupo in categoriasAgrupadas)
+		        {
+			        <div class="mb-5" >
+				        <div class="mb-4">
+					        <h5 class="text-white">@categoriaGrupo.Key.Nombre</h5>
+					        <div class="mb-2" style="background-color: #E14848; padding: 1px; width: 30px;"></div>
+					        <span class="mt-2">@categoriaGrupo.Key.Descripcion</span>
+				        </div>
+
+
+
+				        <div class="row mb-5 mt-3">
+					        @foreach (var articulo in categoriaGrupo)
+					        {
+						        <div class="col-md-3 col-sm-6">
+							        <div class="product-grid">
+								        <div class="product-image">
+									        <a href="@Url.Action("Producto", new { id = articulo.ArticuloId })" class="image">
+										        <img class="img-thumbnail pic-1 img-fluid w-100" src="data:image;base64,@Convert.ToBase64String(articulo.Imagen.Imagen1)" alt="@articulo.Nombre" style="height: 200px; width: 200px;">
+										        <img class="img-thumbnail pic-2 img-fluid w-100" src="data:image;base64,@Convert.ToBase64String(articulo.Imagen.Imagen2)" alt="@articulo.Nombre" style="height: 200px; width: 200px;">
+									        </a>
+									        <ul class="product-links">
+										        <li><a href="@Url.Action("Producto", new { id = articulo.ArticuloId })"><i class="fa fa-eye"></i></a></li>
+                                                @if (User.IsInRole("Usuario"))
+                                                {
+                                                    <li><a onclick="agregarProductoAlCarrito('@articulo.ArticuloId', '@articulo.Nombre', '@articulo.Precio', '@Convert.ToBase64String(articulo.Imagen.Imagen1)', @articulo.Cantidad)"><i class="fa fa-shopping-cart"></i></a></li>
+                                                }
+                                            </ul>
+								        </div>
+								        <div class="product-content">
+									        <h3 class="title"><a href="#">@articulo.Nombre</a></h3>
+									        <div class="precio">₡@articulo.Precio</div>
+								        </div>
+							        </div>
+						        </div>
+
+					        }
+
+				        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                @if (Model.Any())
+                {
+                    @foreach (var articulo in Model)
+                    {
+                        <div class="col-md-3 col-sm-6 mb-5">
+                            <div class="product-grid">
+                                <div class="product-image">
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("Producto",new{id = @articulo.ArticuloId})" class="image">
+                                            <img class="pic-1" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen1)" alt="@articulo.Nombre" class="img-fluid w-100" style="height: 260px;">
+                                            <img class="pic-2" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen2)" alt="@articulo.Nombre" class="img-fluid w-100" style="height: 260px;">
+                                        </a>
+                                        <ul class="product-links">
+                                            <li><a href="@Url.Action("Producto", "Home", new { Id = articulo.ArticuloId })"><i class="fa fa-eye"></i></a></li>
+                                            @if (User.IsInRole("Usuario"))
+                                            {
+                                                <li><a onclick="agregarProductoAlCarrito('@articulo.ArticuloId', '@articulo.Nombre', '@articulo.Precio', '@Convert.ToBase64String(articulo.Imagen.Imagen1)',@articulo.Cantidad)"><i class="fa fa-shopping-cart"></i></a></li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="image">
+                                            <img class="pic-1" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen1)" alt="@articulo.Nombre" class="img-fluid w-100" style="height: 260px;">
+                                            <img class="pic-2" src="data:image;base64,@Convert.ToBase64String(@articulo.Imagen.Imagen2)" alt="@articulo.Nombre" class="img-fluid w-100" style="height: 260px;">
+                                        </a>
+                                        <ul class="product-links">
+                                            <li><a href="@Url.Action("Producto", "Home", new { Id = articulo.ArticuloId })"><i class="fa fa-eye"></i></a></li>
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="title"><a href="#">@articulo.Nombre</a></h3>
+                                    <div class="precio">₡@articulo.Precio</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12">
+                        <p>No hay productos en esta categoría.</p>
+                    </div>
+                }
+            }
+
+
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script src="~/js/Producto.js"></script>

@@ -1,0 +1,62 @@
+﻿@model List<Proyecto_TiendaElectronica.ViewModels.UserViewModel>;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2 class="mb-3">Usuarios</h2>
+
+<div class="admin-element">
+
+    <a href="@Url.Action("CrearUsuario")" class="btn btn-nuevo mb-4">
+        Agregar Usuario
+    </a>
+
+    <table id="table_id" class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td class="text-center">@usuario.UsuarioId</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Rol</td>
+                    <td>
+                        @(usuario.Estado ? "Activo" : "Inactivo")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("VerUsuario", new{id = usuario.UsuarioId})" class="btn btn-ver">
+                            <i class="fas fa-eye"></i>Ver
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditarUsuario", new{id = usuario.UsuarioId})" class="btn btn-actualizar">
+                            <i class="fas fa-edit"></i> Actualizar
+                         </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-eliminar" onclick="eliminar(@usuario.UsuarioId, '/Admin/EliminarUsuario')">
+                            <i class="fas fa-trash"></i> Eliminar
+                            
+                        </button>
+                    </td>
+
+                </tr>
+
+            }
+
+        
+        </tbody>
+    </table>
+
+</div>

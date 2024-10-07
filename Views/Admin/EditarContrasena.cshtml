@@ -1,0 +1,59 @@
+﻿@model Proyecto_TiendaElectronica.ViewModels.UserViewModel;
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2 class="mb-3">Editar Contraseña</h2>
+<p>Editando la contraseña del usuario: @Model.Nombre</p>
+
+
+<div class="admin-element">
+    <form asp-action="EditarContrasena" method="post">
+        <input type="hidden" asp-for="UsuarioId" />
+        <div class="row mb-3">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="Contrasena">Contraseña</label>
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input placeholder="contraseña1234" type="text" class="input_field" asp-for="Contrasena" autocomplete="off">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="Contrasena"></span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="input_container">
+                    <label class="input_label" asp-for="ConfirmarContrasena">Confirmar Contraseña</label>
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input placeholder="contraseña1234" type="text" class="input_field" asp-for="ConfirmarContrasena" autocomplete="off">
+                </div>
+                <div class="text-center text-break">
+                    <span class="error-form" asp-validation-for="ConfirmarContrasena"></span>
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("EditarUsuario", new{id = Model.UsuarioId})" class="btn boton-secundario mt-3">
+            <span class="shadow-volver"></span>
+            <span class="edge-volver"></span>
+            <span class="front-volver text">
+                Volver
+            </span>
+        </a>
+        <button type="submit" class="btn boton mt-3">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text">
+                Actualizar
+            </span>
+        </button>
+
+    </form>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
